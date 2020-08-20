@@ -7,14 +7,14 @@ project(samc21_cmsis_gcc C)
 set(CMAKE_C_STANDARD 99)
 
 include_directories(
-        CMSIS/
-        CMSIS/Core
-        CMSIS/Core/Include
-        CMSIS/samc21
-        CMSIS/samc21/include
-        CMSIS/samc21/include/component
-        CMSIS/samc21/include/pio
-        CMSIS/samc21/include/instance
-        CMSIS/samc21/gcc
-        CMSIS/samc21/gcc/gcc
+        ${CMAKE_CURRENT_LIST_DIR}/CMSIS/
+        ${CMAKE_CURRENT_LIST_DIR}/CMSIS/Core
+        ${CMAKE_CURRENT_LIST_DIR}/CMSIS/Core/Include
+        ${CMAKE_CURRENT_LIST_DIR}/CMSIS/samc21
+        ${CMAKE_CURRENT_LIST_DIR}/CMSIS/samc21/include
+        ${CMAKE_CURRENT_LIST_DIR}/CMSIS/samc21/include/component
+        ${CMAKE_CURRENT_LIST_DIR}/CMSIS/samc21/include/pio
+        ${CMAKE_CURRENT_LIST_DIR}/CMSIS/samc21/include/instance
+        ${CMAKE_CURRENT_LIST_DIR}/CMSIS/samc21/gcc
+        ${CMAKE_CURRENT_LIST_DIR}/CMSIS/samc21/gcc/gcc
 )
