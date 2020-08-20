@@ -5,6 +5,7 @@ include(${CMAKE_CURRENT_SOURCE_DIR}/samc21_cmsis/samc21_cmsis.cmake)
 project(samc21_bootloader)
 
 set(CMAKE_CXX_STANDARD 17)
+add_definitions(-D__SAMC21J18A__)
 
 add_executable(samc21_bootloader)
 
