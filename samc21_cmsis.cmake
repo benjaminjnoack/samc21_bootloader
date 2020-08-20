@@ -5,7 +5,7 @@ include(${CMAKE_CURRENT_LIST_DIR}/toolchain-cortex-m0+.cmake)
 project(samc21_cmsis_gcc C)
 
 set(CMAKE_C_STANDARD 99)
-
+# TODO target_include_directories to help with exporting?
 include_directories(
         ${CMAKE_CURRENT_LIST_DIR}/CMSIS/
         ${CMAKE_CURRENT_LIST_DIR}/CMSIS/Core
