@@ -2,7 +2,6 @@ cmake_minimum_required(VERSION 3.17)
 
 include(${CMAKE_CURRENT_SOURCE_DIR}/samc21_cmsis/samc21_cmsis.cmake)
 
-
 project(samc21_bootloader)
 set(CMAKE_VERBOSE_MAKEFILE true)
 add_executable(samc21_bootloader)
@@ -12,11 +11,12 @@ add_definitions(-D__SAMC21J18A__)
 target_sources(${PROJECT_NAME} PUBLIC
         src/main.cpp)
 
+target_link_libraries(${PROJECT_NAME} startup)
+
 set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -Wl,-lm,-gc-sections,--print-memory-usage")
 set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -Wl,-T ${CMAKE_CURRENT_SOURCE_DIR}/gcc/bootloader.ld -L ${CMAKE_CURRENT_SOURCE_DIR}/gcc")
 set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -Wl,-Map=${CMAKE_BINARY_DIR}/${PROJECT_NAME}.Map")
 
-# just add .elf to the end of the build artifact, (useful for tools like Ozone to identify the executable)
 set_target_properties(${PROJECT_NAME} PROPERTIES SUFFIX ".elf")
 
 add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
