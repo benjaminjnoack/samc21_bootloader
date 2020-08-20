@@ -1,6 +1,12 @@
-A CMake project for SAMC21 CMSIS headers (and maybe linker scripts?)
+**Contents**
 
-Add this as a subtree to any project.
-Update it with new drivers/extensions.
-And then the subtrees of where it is used can simply update their subtree.
+* CMSIS headers
+* reference linker scripts
 
+**TODO**
+
+* `startup_<device>.c`
+    * same code used by bootloader, app, and updater
+    * symbols are not application specific and will be defined in linker script
+* `system_<device>.c`
+    * is there any common initialization (clocks?)
