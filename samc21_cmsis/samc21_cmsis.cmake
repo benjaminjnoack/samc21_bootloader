@@ -18,5 +18,3 @@ include_directories(
         ${CMAKE_CURRENT_LIST_DIR}/CMSIS/samc21/gcc
         ${CMAKE_CURRENT_LIST_DIR}/CMSIS/samc21/gcc/gcc
 )
-
-add_library(startup STATIC CMSIS/samc21/gcc/gcc/startup_samc21.c)
