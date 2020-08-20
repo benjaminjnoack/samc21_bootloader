@@ -4,6 +4,8 @@
 
 int main(void)
 {
+    SystemInit();
+
     REG_PORT_DIR0 |= LED_PIN;//set the direction to output
     REG_PORT_OUT0 |= LED_PIN;//set the pin high (LED off)
 

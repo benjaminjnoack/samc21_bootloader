@@ -9,9 +9,9 @@ add_executable(samc21_bootloader)
 add_definitions(-D__SAMC21J18A__)
 
 target_sources(${PROJECT_NAME} PUBLIC
-        src/main.cpp)
-
-target_link_libraries(${PROJECT_NAME} startup)
+        src/main.cpp
+        gcc/startup_samc21.c
+        gcc/system_samc21.c)
 
 set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -Wl,-lm,-gc-sections,--print-memory-usage")
 set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -Wl,-T ${CMAKE_CURRENT_SOURCE_DIR}/gcc/bootloader.ld -L ${CMAKE_CURRENT_SOURCE_DIR}/gcc")
