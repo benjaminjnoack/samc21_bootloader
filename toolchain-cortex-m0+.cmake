@@ -5,7 +5,7 @@ set(CMAKE_CXX_COMPILER arm-none-eabi-g++)
 set(OBJCOPY arm-none-eabi-objcopy)
 set(NM arm-none-eabi-nm)
 
-set(COMMON_FLAGS "-mcpu=cortex-m0plus -mthumb -mthumb-interwork -ffunction-sections -fdata-sections -fno-common -specs=\"nosys.specs\"")
+set(COMMON_FLAGS "-Wall -mcpu=cortex-m0plus -mthumb -mthumb-interwork -ffunction-sections -fdata-sections -fno-common -specs=\"nosys.specs\"")
 
 set(CMAKE_C_FLAGS_INIT ${COMMON_FLAGS})
 set(CMAKE_C_FLAGS_RELEASE "-Os")
