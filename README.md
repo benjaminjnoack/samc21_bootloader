@@ -1,7 +1,7 @@
 **Contents**
 
 * `gcc` Atmel CMSIS linker scripts
-* `samc21_cmsis` [submodule](https://github.com/benjaminjnoack/samc21_cmsis)
+* `samc21_cmsis` [subtree](https://github.com/benjaminjnoack/samc21_cmsis)
 * `CMakeLists.txt` build script
 * `atmel_samc21_xplained_pro.cfg` OpenOCD config file
 
