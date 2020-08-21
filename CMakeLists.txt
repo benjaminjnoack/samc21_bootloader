@@ -10,7 +10,7 @@ add_definitions(-D__SAMC21J18A__)
 
 target_sources(${PROJECT_NAME} PUBLIC
         src/main.cpp
-        $<TARGET_OBJECTS:cmsis>
+        $<TARGET_OBJECTS:samc21_cmsis>
         )
 
 set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -Wl,-lm,-gc-sections,--print-memory-usage")
