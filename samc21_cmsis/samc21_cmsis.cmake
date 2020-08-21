@@ -18,3 +18,8 @@ include_directories(
         ${CMAKE_CURRENT_LIST_DIR}/samc21/gcc
         ${CMAKE_CURRENT_LIST_DIR}/samc21/gcc/gcc
 )
+
+add_library(cmsis OBJECT
+        ${CMAKE_CURRENT_LIST_DIR}/samc21/gcc/system_samc21.c
+        ${CMAKE_CURRENT_LIST_DIR}/samc21/gcc/gcc/startup_samc21.c
+        )
