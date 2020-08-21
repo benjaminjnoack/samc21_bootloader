@@ -1,12 +1,14 @@
 **Contents**
 
-* CMSIS headers
-* reference linker scripts
+* `ATSAMC21J18A.svd` CMSIS register definition XML
+* `Core` ARM Cortex M0+
+* `toolchain-cortex-m0+.cmake` CMake toolchain file
+* `samc21` Atmel CMSIS headers, `startup_<device>.c`, `system_<device>.c`, and linker scripts
+* `samc21_cmsis.cmake` CMake object library file
 
 **TODO**
 
 * `target_include_directories`
-* `build CMSIS *.c files as a usable archive`
 * `startup_<device>.c`
     * same code used by bootloader, app, and updater
     * symbols are not application specific and will be defined in linker script
