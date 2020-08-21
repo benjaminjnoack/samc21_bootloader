@@ -9,6 +9,6 @@ MEMORY
 }
 
 __boot_rom_start__  = ORIGIN(boot_rom);
-__boot_rom_size__   = LENGTH(boot_rom);
+__boot_rom_length__   = LENGTH(boot_rom);
 __app_rom_start__  = ORIGIN(app_rom);
-__app_rom_size__   = LENGTH(app_rom);
+__app_rom_length__   = LENGTH(app_rom);

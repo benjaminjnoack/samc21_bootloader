@@ -6,8 +6,8 @@
 int main(void)
 {
     SystemInit();
-    uint32_t *app_code = (uint32_t *) __app_rom_start__;
-    uint32_t app_sp = app_code[0];
+    int *app_code = &__app_rom_start__;
+    int *app_len = &__app_rom_length__;
 
     REG_PORT_DIR0 |= LED_PIN;//set the direction to output
     REG_PORT_OUT0 |= LED_PIN;//set the pin high (LED off)
