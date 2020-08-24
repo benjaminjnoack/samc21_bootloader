@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.17)
 include(${CMAKE_CURRENT_LIST_DIR}/samc21_cmsis/samc21_cmsis.cmake)
 
 project(samc21_bootloader)
-#set(CMAKE_VERBOSE_MAKEFILE true)
+set(CMAKE_VERBOSE_MAKEFILE true)
 add_executable(${PROJECT_NAME})
 
 add_definitions(-D__SAMC21J18A__)
@@ -14,9 +14,11 @@ target_sources(${PROJECT_NAME} PUBLIC
         $<TARGET_OBJECTS:samc21_cmsis>
         )
 
-set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -Wl,-lm,-gc-sections,--print-memory-usage")
-set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -Wl,-T ${CMAKE_CURRENT_SOURCE_DIR}/gcc/bootloader.ld -L ${CMAKE_CURRENT_SOURCE_DIR}/gcc")
-set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -Wl,-Map=${CMAKE_BINARY_DIR}/${PROJECT_NAME}.Map")
+# setting CMAKE_EXE_LINKER_FLAGS will be combined with blink's linker options (conflicting linker scripts)
+target_link_options(${PROJECT_NAME} PRIVATE LINKER:-lm,-gc-sections,--print-memory-usage)
+target_link_options(${PROJECT_NAME} PRIVATE LINKER:-L ${CMAKE_CURRENT_LIST_DIR}/gcc)
+target_link_options(${PROJECT_NAME} PRIVATE LINKER:-T ${CMAKE_CURRENT_LIST_DIR}/gcc/bootloader.ld)
+target_link_options(${PROJECT_NAME} PRIVATE LINKER:-Map=${CMAKE_BINARY_DIR}/${PROJECT_NAME}.map)
 
 set_target_properties(${PROJECT_NAME} PROPERTIES SUFFIX ".elf")
 
