@@ -14,6 +14,8 @@ int main(void)
     uint32_t app_sp = app_code[0];
     uint32_t app_start = app_code[1];
 
+    boot_app(app_sp, app_start);
+
     REG_PORT_DIR0 |= LED_PIN;//set the direction to output
     REG_PORT_OUT0 |= LED_PIN;//set the pin high (LED off)
 

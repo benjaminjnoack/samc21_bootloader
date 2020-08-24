@@ -9,8 +9,6 @@
 **TODO**
 
 * boot application
-    * change the LED used
-    * pad the binary as a post build step
     * conditionally pad binary and jump only when a subsidiary project (otherwise just blink)
     * perhaps Ozone will be able to debug it when provided with the concatenated binary?
         * both will have debug info...
