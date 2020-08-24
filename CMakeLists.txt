@@ -4,12 +4,13 @@ include(${CMAKE_CURRENT_LIST_DIR}/samc21_cmsis/samc21_cmsis.cmake)
 
 project(samc21_bootloader)
 #set(CMAKE_VERBOSE_MAKEFILE true)
-add_executable(${PROJECT_NAME} src/memory_map.h)
+add_executable(${PROJECT_NAME})
 
 add_definitions(-D__SAMC21J18A__)
 
 target_sources(${PROJECT_NAME} PUBLIC
-        src/main.cpp
+        ${CMAKE_CURRENT_LIST_DIR}/src/main.cpp
+        ${CMAKE_CURRENT_LIST_DIR}/src/memory_map.h
         $<TARGET_OBJECTS:samc21_cmsis>
         )
 
