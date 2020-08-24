@@ -247,7 +247,12 @@ void Reset_Handler(void)
                 *pDest++ = 0;
         }
 
-        /* Set the vector table base address */
+        /*
+         * Set the vector table base address
+         * _sfixed is defined in both the app and bootloader linker scripts
+         * as being at the base of the .text section
+         * consequently, this code works for both the app and bootloader!
+         */
         pSrc = (uint32_t *) & _sfixed;
         SCB->VTOR = ((uint32_t) pSrc & SCB_VTOR_TBLOFF_Msk);
 
