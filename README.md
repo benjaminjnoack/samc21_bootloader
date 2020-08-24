@@ -16,6 +16,7 @@
         * both will have debug info...
         * use `nm` to generate a symbol listing
 * validate application
+    * the `magic` should a four letter (32 bit) word, like "TECH" or "SHOT" ...could be two words...
 * announce version
     * read from memory
     * communicate over network

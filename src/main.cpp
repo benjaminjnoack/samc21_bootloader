@@ -2,7 +2,7 @@
 #include "sam.h"
 #include "memory_map.h"
 
-#define LED_PIN PORT_PA15
+#define LED_PIN PORT_PA14
 
 void boot_app(uint32_t pc, uint32_t sp);
 
