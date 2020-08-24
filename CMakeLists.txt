@@ -20,8 +20,9 @@ set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -Wl,-Map=${CMAKE_BINARY_DI
 set_target_properties(${PROJECT_NAME} PROPERTIES SUFFIX ".elf")
 
 add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
-        COMMENT "output bin"
+        COMMENT "output bins"
         COMMAND ${OBJCOPY} -O binary "${PROJECT_NAME}.elf" "${PROJECT_NAME}.bin"
+        COMMAND ${OBJCOPY} -O binary --pad-to=0x4000 --gap-fill=0xFF "${PROJECT_NAME}.elf" "${PROJECT_NAME}.padded.bin"
         WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
         )
 
