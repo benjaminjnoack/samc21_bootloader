@@ -4,6 +4,7 @@
 
 #define LED_PIN PORT_PA15
 
+void boot_app(uint32_t pc, uint32_t sp);
 
 int main(void)
 {
@@ -25,3 +26,14 @@ int main(void)
     }
 }
 
+void boot_app(uint32_t pc, uint32_t sp)
+{
+    /**
+     * https://static.docs.arm.com/ihi0042/g/aapcs32.pdf
+     * section 6.1.1 Core registers
+     * "The first four registers r0-r3 (a1-a4) are used to pass argument values into a subroutine..."
+     * TODO would be nice to "use" the variables in C as to avoid the unused-variable warning
+     */
+    __asm("msr msp, r1\n"
+          "bx r0");
+}
