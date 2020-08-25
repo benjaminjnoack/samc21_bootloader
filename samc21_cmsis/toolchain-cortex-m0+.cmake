@@ -5,6 +5,7 @@ set(CMAKE_CXX_COMPILER arm-none-eabi-g++)
 set(OBJCOPY arm-none-eabi-objcopy)
 set(OBJDUMP arm-none-eabi-objdump)
 set(NM arm-none-eabi-nm)
+set(READELF arm-none-eabi-readelf)
 
 set(COMPILER_WARNINGS "-Wall -Wextra -Werror")
 # https://interrupt.memfault.com/blog/best-and-worst-gcc-clang-compiler-flags
