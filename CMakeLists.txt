@@ -47,7 +47,7 @@ add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
 
 add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
         COMMENT "output ${PROJECT_NAME} lss"
-        COMMAND ${NM} --demangle --numeric-sort ${PROJECT_NAME}.elf > ${PROJECT_NAME}.lss
+        COMMAND ${NM} -S --demangle --numeric-sort ${PROJECT_NAME}.elf > ${PROJECT_NAME}.lss
         WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
         BYPRODUCTS ${PROJECT_NAME}.lss
         )
