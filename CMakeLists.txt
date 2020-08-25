@@ -59,3 +59,9 @@ add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
         WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
         BYPRODUCTS ${PROJECT_NAME}.lss
         )
+
+add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
+        COMMENT "Build ID"
+        COMMAND ${READELF} -n ${PROJECT_NAME}.elf | grep \"Build ID:\" | cut -d \: -f 2 | sed 's/ //'
+        DEPENDS ${PROJECT_NAME}.elf
+        )
