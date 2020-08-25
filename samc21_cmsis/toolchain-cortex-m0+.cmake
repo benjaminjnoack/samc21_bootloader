@@ -3,6 +3,7 @@ cmake_minimum_required(VERSION 3.17)
 set(CMAKE_C_COMPILER arm-none-eabi-gcc)
 set(CMAKE_CXX_COMPILER arm-none-eabi-g++)
 set(OBJCOPY arm-none-eabi-objcopy)
+set(OBJDUMP arm-none-eabi-objdump)
 set(NM arm-none-eabi-nm)
 
 set(COMPILER_WARNINGS "-Wall -Wextra -Werror")

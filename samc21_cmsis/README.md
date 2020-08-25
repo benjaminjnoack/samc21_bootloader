@@ -3,7 +3,7 @@
 * `ATSAMC21J18A.svd` CMSIS register definition XML
 * `Core` ARM Cortex M0+ headers
 * `samc21` Atmel CMSIS headers, `startup_<device>.c`, `system_<device>.c`, and linker scripts
-* `samc21_cmsis.cmake` CMake object library file
+* `samc21_cmsis.cmake` CMake object library file #TODO why is this not `CMakeLists.txt`?
 * `toolchain-cortex-m0+.cmake` CMake toolchain file
 
 **TODO**
