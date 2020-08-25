@@ -27,7 +27,7 @@ add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
         COMMAND arm-none-eabi-objdump -d ${PROJECT_NAME}.elf > ${PROJECT_NAME}.s
         COMMAND arm-none-eabi-objdump -D --dwarf=follow-links ${PROJECT_NAME}.elf > ${PROJECT_NAME}.S
         WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
-        BYPRODUCTS ${PROJECT_NAME}.S
+        BYPRODUCTS ${PROJECT_NAME}.s ${PROJECT_NAME}.S
         )
 
 add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
