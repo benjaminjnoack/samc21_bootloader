@@ -23,22 +23,31 @@ target_link_options(${PROJECT_NAME} PRIVATE LINKER:-Map=${CMAKE_BINARY_DIR}/${PR
 set_target_properties(${PROJECT_NAME} PROPERTIES SUFFIX ".elf")
 
 add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
-        COMMENT "output bins"
-        COMMAND ${OBJCOPY} -O binary "${PROJECT_NAME}.elf" "${PROJECT_NAME}.bin"
-        COMMAND ${OBJCOPY} -O binary --pad-to=0x4000 --gap-fill=0xFF "${PROJECT_NAME}.elf" "${PROJECT_NAME}.padded.bin"
+        COMMENT "output ${PROJECT_NAME} bins"
+        COMMAND ${OBJCOPY} -O binary ${PROJECT_NAME}.elf ${PROJECT_NAME}.bin
+        COMMAND ${OBJCOPY} -O binary --pad-to=0x4000 --gap-fill=0xFF ${PROJECT_NAME}.elf ${PROJECT_NAME}.padded.bin
         WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
         BYPRODUCTS "${PROJECT_NAME}.bin" "${PROJECT_NAME}.padded.bin"
         )
 
 add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
-        COMMENT "output hex"
-        COMMAND ${OBJCOPY} -O ihex -R .eeprom -R .fuse -R .lock -R .signature "${PROJECT_NAME}.elf" "${PROJECT_NAME}.hex"
+        COMMENT "output ${PROJECT_NAME} hex"
+        COMMAND ${OBJCOPY} -O ihex -R .eeprom -R .fuse -R .lock -R .signature ${PROJECT_NAME}.elf ${PROJECT_NAME}.hex
         WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
         BYPRODUCTS "${PROJECT_NAME}.hex"
         )
 
 add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
-        COMMENT "output lss"
-        COMMAND ${NM} --demangle --numeric-sort "${PROJECT_NAME}.elf" > "${PROJECT_NAME}.lss"
-        BYPRODUCTS "${PROJECT_NAME}.lss"
+        COMMENT "output ${PROJECT_NAME} S-records"
+        COMMAND ${OBJCOPY} -O srec ${PROJECT_NAME}.elf ${PROJECT_NAME}.srec
+        COMMAND ${OBJCOPY} -O srec --pad-to=0x4000 --gap-fill=0xFF ${PROJECT_NAME}.elf ${PROJECT_NAME}.padded.srec
+        WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
+        BYPRODUCTS ${PROJECT_NAME}.srec ${PROJECT_NAME}.padded.srec
+        )
+
+add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
+        COMMENT "output ${PROJECT_NAME} lss"
+        COMMAND ${NM} --demangle --numeric-sort ${PROJECT_NAME}.elf > ${PROJECT_NAME}.lss
+        WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
+        BYPRODUCTS ${PROJECT_NAME}.lss
         )
