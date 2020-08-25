@@ -10,6 +10,7 @@ add_definitions(-D__SAMC21J18A__)
 
 target_sources(${PROJECT_NAME} PUBLIC
         ${CMAKE_CURRENT_LIST_DIR}/src/main.cpp
+        ${CMAKE_CURRENT_LIST_DIR}/src/gnu_build_id.h
         ${CMAKE_CURRENT_LIST_DIR}/src/memory_map.h
         $<TARGET_OBJECTS:samc21_cmsis>
         )

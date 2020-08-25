@@ -89,6 +89,12 @@ SECTIONS
         _efixed = .;            /* End of text section */
     } > boot_rom
 
+    .gnu_build_id :
+    {
+        PROVIDE(__gnu_build_id__ = .);
+        *(.note.gnu.build-id)
+    } > boot_rom
+
     /* .ARM.exidx is sorted, so has to go in its own output section.  */
     PROVIDE_HIDDEN (__exidx_start = .);
     .ARM.exidx :
