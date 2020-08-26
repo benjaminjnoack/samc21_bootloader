@@ -9,7 +9,7 @@ fi
 MAGIC="TechShot"
 CHECKSUM=12345678
 TIMESTAMP=$(date +%s)
-TAG=$(git tag -l 'v*' | head -n 1 | tr -d v)
+TAG=$(git tag -l 'v*' | tail -n 1 | tr -d v)
 MAJOR_VERSION=$(echo $TAG | cut -d \. -f 1)
 MINOR_VERSION=$(echo $TAG | cut -d \. -f 2)
 PATCH_VERSION=$(echo $TAG | cut -d \. -f 3)
