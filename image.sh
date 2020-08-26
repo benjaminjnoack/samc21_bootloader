@@ -1,7 +1,7 @@
 #!/bin/bash
 
 if [ -z "$1" ]; then
-  BUILD_DIR=.
+  BUILD_DIR=$(pwd)
 else
   BUILD_DIR="$1"
 fi

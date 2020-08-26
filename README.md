@@ -15,6 +15,9 @@
         * build ID SHA1 or MD5
             * all bins and hexs would inherit
             * elf would need to be stripped of all NOLOAD sections
+                * "When objcopy generates a raw binary file, it will essentially produce
+                   a memory dump of the contents of the input object file. All symbols and relocation infor-
+                   mation will be discarded."
             * still not sure it would line up with bin sent over CAN
             * where to put it
                 * store the build ID in the first word - doesn't work for bootloader
