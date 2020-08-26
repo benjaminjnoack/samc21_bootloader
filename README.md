@@ -9,19 +9,23 @@
 
 * validate application
     * version (git tag)
-    * 1.0.0
+        * 1.0.0
     * checksum
         * CRC
         * build ID SHA1 or MD5
-    * build
-        * build bootloader separately, uses this version info
-        * build application, uses app's info to fill in these known values
-        * bootloader checks app
-        * bootloader should only be able to check it's own revision
-        when updating the bootloader is supported
-        * start with a PRE_BUILD shell script that outputs the filled in template
-        * maybe JUST the checksum need be added to the image after the fact???
-        
+            * all bins and hexs would inherit
+            * elf would need to be stripped of all NOLOAD sections
+            * still not sure it would line up with bin sent over CAN
+            * where to put it
+                * store the build ID in the first word - doesn't work for bootloader
+                * anywhere else means bootloader would have to ignore that location...I think
+        * `cksum` the bin
+            * store the checksum in the first word
+                * doesn't work for bootloader
+                * worry about how to support updating the bootloader when that becomes a requirement
+            * anywhere else means bootloader would have to ignore that location...I think
+            AND you would have to write a custom CRC on the build machine that would ignore that location
+            otherwise it would run a checksum of an image...containing itself!
 * "hard" break into bootloader to avoid loops
 * detect boot loops
     * wait for new software

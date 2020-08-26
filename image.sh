@@ -7,17 +7,17 @@ else
 fi
 
 MAGIC="TechShot"
-CHECKSUM=123
+CHECKSUM=12345678
 TIMESTAMP=$(date +%s)
 
-USER_SIZE=$(echo $USER | wc -c)
+USER_SIZE=$(echo -n $USER | wc -c)
 # uint8_t
 if [ $USER_SIZE -gt 255 ];then
   echo $USER is too long
   exit 1
 fi
 
-HOST_SIZE=$(echo $HOSTNAME | wc -c)
+HOST_SIZE=$(echo -n $HOSTNAME | wc -c)
 # uint8_t
 if [ $HOST_SIZE -gt 255 ];then
   echo $USER is too long
@@ -34,7 +34,7 @@ DATA="$(echo -ne "$MAGIC\0$USER\0$HOSTNAME\0" | xxd -i)"
 echo "#include \"image.h\"
 
 struct image_hdr __attribute__((section(\".image_hdr\"))) image = {
-	.checksum = $CHECKSUM,
+	.checksum = 0x$CHECKSUM,
 	.timestamp = $TIMESTAMP,
 	.user_size = $USER_SIZE,
 	.host_size = $HOST_SIZE,
