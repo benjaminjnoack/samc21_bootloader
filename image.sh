@@ -9,7 +9,10 @@ fi
 MAGIC="TechShot"
 CHECKSUM=12345678
 TIMESTAMP=$(date +%s)
-
+TAG=$(git tag -l 'v*' | head -n 1 | tr -d v)
+MAJOR_VERSION=$(echo $TAG | cut -d \. -f 1)
+MINOR_VERSION=$(echo $TAG | cut -d \. -f 2)
+PATCH_VERSION=$(echo $TAG | cut -d \. -f 3)
 USER_SIZE=$(echo -n $USER | wc -c)
 # uint8_t
 if [ $USER_SIZE -gt 255 ];then
@@ -25,9 +28,6 @@ if [ $HOST_SIZE -gt 255 ];then
 fi
 
 COMMIT_SHA1=$(git log --pretty=format:"%H" -1 | cut -c 1-8)
-MAJOR_VERSION=1
-MINOR_VERSION=0
-PATCH_VERSION=0
 [[ $(git diff --exit-code && git diff --cached --exit-code) ]] && CLEAN_BUILD="false" || CLEAN_BUILD="true"
 DATA="$(echo -ne "$MAGIC\0$USER\0$HOSTNAME\0" | xxd -i)"
 
