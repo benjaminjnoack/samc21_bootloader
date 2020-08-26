@@ -2,6 +2,7 @@
 #include "sam.h"
 #include "memory_map.h"
 #include "gnu_build_id.h"
+#include "image.h"
 
 #define LED_PIN PORT_PA14
 

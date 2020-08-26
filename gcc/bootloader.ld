@@ -95,6 +95,12 @@ SECTIONS
         *(.note.gnu.build-id)
     } > boot_rom
 
+    .image_hdr :
+    {
+        PROVIDE(__image_hdr__ = .);
+        KEEP (*(.image_hdr))
+    } > boot_rom
+
     /* .ARM.exidx is sorted, so has to go in its own output section.  */
     PROVIDE_HIDDEN (__exidx_start = .);
     .ARM.exidx :

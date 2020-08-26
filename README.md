@@ -8,26 +8,20 @@
 **TODO**
 
 * validate application
-    * timestamp
-    * hostname
-    * user
     * version (git tag)
-    * commit hash
-    * dirty/clean build
-    * magic
-        * bootloader "tech"
-        * app "shot"
+    * 1.0.0
     * checksum
         * CRC
         * build ID SHA1 or MD5
     * build
         * build bootloader separately, uses this version info
         * build application, uses app's info to fill in these known values
-        * bootloader checks app, (checks itself...?)
-        * when the bootloader is a subtree,
-        and you want the bootloader to have it's own revision information,
-        then it would actually be easier if the bootloader were a submodule.
-        But we're not going down that road again!
+        * bootloader checks app
+        * bootloader should only be able to check it's own revision
+        when updating the bootloader is supported
+        * start with a PRE_BUILD shell script that outputs the filled in template
+        * maybe JUST the checksum need be added to the image after the fact???
+        
 * "hard" break into bootloader to avoid loops
 * detect boot loops
     * wait for new software
