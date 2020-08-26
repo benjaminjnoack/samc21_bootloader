@@ -17,7 +17,7 @@ int main(void)
 	SystemInit();
 
 	REG_PORT_DIR0 |= LED_PIN;//set the direction to output
-	REG_PORT_OUT0 |= LED_PIN;//set the pin high (LED off)
+	REG_PORT_DIRSET0 |= LED_PIN;//set the pin high (LED on)
 
 	uint32_t i;
 	uint32_t sz = __gnu_build_id__.namesz;
