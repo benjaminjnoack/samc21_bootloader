@@ -7,10 +7,10 @@
 #include "stdint.h"
 
 struct ElfNoteSection {
-    uint32_t namesz;
-    uint32_t descsz;
-    uint32_t type;
-    uint8_t data[];
+	uint32_t namesz;
+	uint32_t descsz;
+	uint32_t type;
+	uint8_t data[];
 };
 
 /**
