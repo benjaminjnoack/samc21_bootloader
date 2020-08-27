@@ -4,6 +4,9 @@
 #include "stdint.h"
 #include "stdbool.h"
 
+#define IMAGE_CHECKSUM_DEFAULT 0x12345678
+#define IMAGE_MAGIC_LENGTH 8
+
 struct __attribute__((packed)) image_hdr  {
 	uint32_t checksum;
 	uint32_t timestamp;

@@ -23,6 +23,9 @@ int main(void)
 	uint32_t i;
 	uint32_t sz = __gnu_build_id__.namesz;
 	uint8_t data = 0;
+	uint32_t *app_start;
+	uint32_t sp;
+	uint32_t pc;
 
 	/**
 	 * There are FAR easier ways to iterate through this data.
@@ -44,14 +47,38 @@ int main(void)
 		}
 	}
 
+	struct image_hdr *image_hdr = (struct image_hdr *) __app_rom_start__;
+	if (image_hdr->checksum == IMAGE_CHECKSUM_DEFAULT) {
+		goto forever;
+	}
+
+	if (image_hdr->timestamp == 0) {
+		goto forever;
+	}
+
+	sz = (image_hdr->host_size + 1) + (image_hdr->user_size + 1) + (IMAGE_MAGIC_LENGTH + 1);
 	/**
-	 * TODO can I use __app_rom_start__ plus sizeof ?
+	 * another dummy read to step through
+	 * data contains ascii text and null terminators
+	 * so there should never be any 0xFFs in there
 	 */
-	uint32_t *app_start = &__app_rom_start__;
-	uint32_t sp = app_start[0];
-	uint32_t pc = app_start[1];
+	for (i = 0; i < sz; i++) {
+		data = image_hdr->data[i];
+		if (data == 0xFF) {
+			break;
+		}
+	}
+
+	if (sz % sizeof(uint32_t)) {
+		sz += sizeof(uint32_t) - (sz % sizeof(uint32_t));
+	}
+
+	app_start = (uint32_t *) (__app_rom_start__ + (sz / sizeof(uint32_t)));
+	sp = app_start[0];
+	pc = app_start[1];
 	boot_app(sp, pc);
 
+forever:
 	while (1) {
 		for (i = 0; i < 100000; i++);
 
