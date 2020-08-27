@@ -11,7 +11,6 @@ add_definitions(-D__SAMC21J18A__)
 include_directories(${CMAKE_CURRENT_LIST_DIR}/src)
 
 target_sources(${PROJECT_NAME} PUBLIC
-        image.c
         ${CMAKE_CURRENT_LIST_DIR}/src/image.h
         ${CMAKE_CURRENT_LIST_DIR}/src/gnu_build_id.h
         ${CMAKE_CURRENT_LIST_DIR}/src/main.cpp
