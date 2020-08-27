@@ -13,18 +13,15 @@ TAG=$(git tag -l 'v*' | tail -n 1 | tr -d v)
 MAJOR_VERSION=$(echo $TAG | cut -d \. -f 1)
 MINOR_VERSION=$(echo $TAG | cut -d \. -f 2)
 PATCH_VERSION=$(echo $TAG | cut -d \. -f 3)
+
 USER_SIZE=$(echo -n $USER | wc -c)
-# uint8_t
 if [ $USER_SIZE -gt 255 ];then
-  echo $USER is too long
-  exit 1
+  echo $USER is too long && exit 1
 fi
 
 HOST_SIZE=$(echo -n $HOSTNAME | wc -c)
-# uint8_t
 if [ $HOST_SIZE -gt 255 ];then
-  echo $USER is too long
-  exit 1
+  echo $USER is too long && exit 1
 fi
 
 COMMIT_SHA1=$(git log --pretty=format:"%H" -1 | cut -c 1-8)
