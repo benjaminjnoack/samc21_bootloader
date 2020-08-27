@@ -30,7 +30,7 @@ DATA="$(echo -ne "$MAGIC\0$USER\0$HOSTNAME\0" | xxd -i)"
 
 echo "#include \"image.h\"
 
-struct image_hdr __attribute__((section(\".image_hdr\"))) image = {
+const struct image_hdr __attribute__((section(\".image_hdr\"))) image = {
 	.checksum = 0x$CHECKSUM,
 	.timestamp = $TIMESTAMP,
 	.user_size = $USER_SIZE,

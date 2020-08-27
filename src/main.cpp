@@ -44,10 +44,8 @@ int main(void)
 		}
 	}
 
-
 	/**
-	 * __app_rom_start__ is declared in memory_map.h
-	 * which, in turn, is defined in memory_map.ld
+	 * TODO can I use __app_rom_start__ plus sizeof ?
 	 */
 	uint32_t *app_start = &__app_rom_start__;
 	uint32_t sp = app_start[0];

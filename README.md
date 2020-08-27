@@ -71,7 +71,8 @@ Add a new [Embedded GDB Server](https://www.jetbrains.com/help/clion/embedded-gd
 
 * validate application
     * CRC-32
-    * build ID (SHA1 or MD5)
+        * patch S-record?
+        * validate installation
 * "hard" break into boot loader
     * power on while button is pressed
 * detect boot loops
