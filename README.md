@@ -8,8 +8,6 @@
 **TODO**
 
 * validate application
-    * version (git tag)
-        * 1.0.0
     * checksum
         * CRC
         * build ID SHA1 or MD5
