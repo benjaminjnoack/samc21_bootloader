@@ -2,6 +2,7 @@
 #include "sam.h"
 #include "memory_map.h"
 #include "gnu_build_id.h"
+#include "crc.h"
 #include "image.h"
 
 #define LED_PIN PORT_PA14
@@ -22,6 +23,7 @@ int main(void)
 
 	uint32_t i;
 	uint32_t sz = __gnu_build_id__.namesz;
+	uint32_t crc = 0;
 	uint32_t remainder;
 	uint8_t data = 0;
 	uint32_t *app_start;
@@ -60,7 +62,11 @@ int main(void)
 		goto forever;
 	}
 
-	if (image_hdr->timestamp == 0) {
+	/**
+	 * image_size is the next word after the checksum
+	 */
+	crc32((uint8_t *) &image_hdr->image_size, image_hdr->image_size, &crc);
+	if (crc != image_hdr->checksum) {
 		goto forever;
 	}
 
@@ -103,6 +109,7 @@ int main(void)
 	sz /= sizeof(uint32_t);
 
 	app_start = (uint32_t *) &__app_rom_start__ + sz;
+
 	sp = app_start[0];
 	pc = app_start[1];
 	boot_app(sp, pc);

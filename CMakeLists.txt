@@ -16,6 +16,8 @@ include_directories(
 target_sources(${PROJECT_NAME} PUBLIC
         image.c
         image.h
+        ${CMAKE_CURRENT_LIST_DIR}/src/crc.c
+        ${CMAKE_CURRENT_LIST_DIR}/src/crc.h
         ${CMAKE_CURRENT_LIST_DIR}/src/gnu_build_id.h
         ${CMAKE_CURRENT_LIST_DIR}/src/main.cpp
         ${CMAKE_CURRENT_LIST_DIR}/src/memory_map.h
