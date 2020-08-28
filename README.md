@@ -1,11 +1,3 @@
-# Installation
-
-## CMSIS
-
-* [CMSIS SVD](https://arm-software.github.io/CMSIS_5/SVD/html/index.html)
-* [Microchip Packs](http://packs.download.atmel.com/)
-* [CMSIS Core Device Templates](https://arm-software.github.io/CMSIS_5/Core/html/templates_pg.html)
-
 # Hardware
 
 * Microchip [SAMC21 Xplained Pro](https://www.microchip.com/DevelopmentTools/ProductDetails/ATSAMD21-XPRO) development board
@@ -13,7 +5,13 @@
     * [User Guide](http://ww1.microchip.com/downloads/en/DeviceDoc/Atmel-42460-SAM-C21-Xplained-Pro_User-Guide.pdf)
 * Segger [J-Link](https://www.segger.com/products/debug-probes/j-link/) probe, (tested with J-Link EDU and J-Link mini)
 
-# Installation
+# Software
+
+## CMSIS
+
+* [CMSIS SVD](https://arm-software.github.io/CMSIS_5/SVD/html/index.html)
+* [Microchip Packs](http://packs.download.atmel.com/)
+* [CMSIS Core Device Templates](https://arm-software.github.io/CMSIS_5/Core/html/templates_pg.html)
 
 ## GCC
 
@@ -60,19 +58,8 @@ Add a new [Embedded GDB Server](https://www.jetbrains.com/help/clion/embedded-gd
 * **GDB Server** `JLinkGDBServer`
 * **GDB Server args** `-device ATSAMC21J18A -endian little -if SWD -speed 2000`
 
-**Contents**
-
-* `gcc` Atmel CMSIS linker scripts
-* `samc21_cmsis` [subtree](https://github.com/benjaminjnoack/samc21_cmsis)
-* `CMakeLists.txt` build script
-* `atmel_samc21_xplained_pro.cfg` OpenOCD config file
-
 **TODO**
 
-* validate application
-    * CRC-32
-        * patch S-record?
-        * validate installation
 * "hard" break into boot loader
     * power on while button is pressed
 * detect boot loops
