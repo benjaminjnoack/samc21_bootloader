@@ -62,6 +62,8 @@ int main(void)
 		goto forever;
 	}
 
+	crc_table_init();
+
 	/**
 	 * image_size is the next word after the checksum
 	 */
