@@ -35,6 +35,10 @@ Download and install [Segger Ozone](https://www.segger.com/downloads/jlink#Ozone
 
 # Setup
 
+## Linux Installation
+
+`sudo apt install libarchive-zip-perl`
+
 ## CLion Toolchain
 
 Add a CLion [toolchain](https://www.jetbrains.com/help/clion/toolchains.html).
