@@ -51,6 +51,22 @@ add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
         BYPRODUCTS ${PROJECT_NAME}.bin ${PROJECT_NAME}.padded.bin
         )
 
+
+add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
+        COMMENT "output ${PROJECT_NAME} lss"
+        COMMAND ${NM} -S --demangle --numeric-sort ${PROJECT_NAME}.elf > ${PROJECT_NAME}.lss
+        WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
+        BYPRODUCTS ${PROJECT_NAME}.lss
+        )
+
+add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
+        COMMENT "Build ID"
+        DEPENDS ${PROJECT_NAME}.elf
+        COMMAND ${READELF} -n ${PROJECT_NAME}.elf | grep \"Build ID:\" | cut -d \\: -f 2 | sed 's/ //'
+        )
+
+
+# TODO for reference
 #add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
 #        COMMENT "output ${PROJECT_NAME} hex"
 #        COMMAND ${OBJCOPY} -O ihex -R .eeprom -R .fuse -R .lock -R .signature ${PROJECT_NAME}.elf ${PROJECT_NAME}.hex
@@ -65,16 +81,3 @@ add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
 #        WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
 #        BYPRODUCTS ${PROJECT_NAME}.srec ${PROJECT_NAME}.padded.srec
 #        )
-
-add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
-        COMMENT "output ${PROJECT_NAME} lss"
-        COMMAND ${NM} -S --demangle --numeric-sort ${PROJECT_NAME}.elf > ${PROJECT_NAME}.lss
-        WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
-        BYPRODUCTS ${PROJECT_NAME}.lss
-        )
-
-add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
-        COMMENT "Build ID"
-        DEPENDS ${PROJECT_NAME}.elf
-        COMMAND ${READELF} -n ${PROJECT_NAME}.elf | grep \"Build ID:\" | cut -d \\: -f 2 | sed 's/ //'
-        )
