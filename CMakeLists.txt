@@ -51,20 +51,20 @@ add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
         BYPRODUCTS ${PROJECT_NAME}.bin ${PROJECT_NAME}.padded.bin
         )
 
-add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
-        COMMENT "output ${PROJECT_NAME} hex"
-        COMMAND ${OBJCOPY} -O ihex -R .eeprom -R .fuse -R .lock -R .signature ${PROJECT_NAME}.elf ${PROJECT_NAME}.hex
-        WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
-        BYPRODUCTS "${PROJECT_NAME}.hex"
-        )
+#add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
+#        COMMENT "output ${PROJECT_NAME} hex"
+#        COMMAND ${OBJCOPY} -O ihex -R .eeprom -R .fuse -R .lock -R .signature ${PROJECT_NAME}.elf ${PROJECT_NAME}.hex
+#        WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
+#        BYPRODUCTS "${PROJECT_NAME}.hex"
+#        )
 
-add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
-        COMMENT "output ${PROJECT_NAME} S-records"
-        COMMAND ${OBJCOPY} -O srec ${PROJECT_NAME}.elf ${PROJECT_NAME}.srec
-        COMMAND ${OBJCOPY} -O srec --pad-to=0x4000 --gap-fill=0xFF ${PROJECT_NAME}.elf ${PROJECT_NAME}.padded.srec
-        WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
-        BYPRODUCTS ${PROJECT_NAME}.srec ${PROJECT_NAME}.padded.srec
-        )
+#add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
+#        COMMENT "output ${PROJECT_NAME} S-records"
+#        COMMAND ${OBJCOPY} -O srec ${PROJECT_NAME}.elf ${PROJECT_NAME}.srec
+#        COMMAND ${OBJCOPY} -O srec --pad-to=0x4000 --gap-fill=0xFF ${PROJECT_NAME}.elf ${PROJECT_NAME}.padded.srec
+#        WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
+#        BYPRODUCTS ${PROJECT_NAME}.srec ${PROJECT_NAME}.padded.srec
+#        )
 
 add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
         COMMENT "output ${PROJECT_NAME} lss"
