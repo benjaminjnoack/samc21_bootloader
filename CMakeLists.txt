@@ -8,10 +8,14 @@ add_executable(${PROJECT_NAME})
 
 add_definitions(-D__SAMC21J18A__)
 
-include_directories(${CMAKE_CURRENT_LIST_DIR}/src)
+include_directories(
+        ${CMAKE_BINARY_DIR}
+        ${CMAKE_CURRENT_LIST_DIR}/src
+)
 
 target_sources(${PROJECT_NAME} PUBLIC
-        ${CMAKE_CURRENT_LIST_DIR}/src/image.h
+        image.c
+        image.h
         ${CMAKE_CURRENT_LIST_DIR}/src/gnu_build_id.h
         ${CMAKE_CURRENT_LIST_DIR}/src/main.cpp
         ${CMAKE_CURRENT_LIST_DIR}/src/memory_map.h
@@ -26,7 +30,7 @@ target_link_options(${PROJECT_NAME} PRIVATE LINKER:-Map=${CMAKE_BINARY_DIR}/${PR
 
 set_target_properties(${PROJECT_NAME} PROPERTIES SUFFIX ".elf")
 
-add_custom_command(OUTPUT image.c
+add_custom_command(OUTPUT image.c image.h
         COMMENT "generating image header"
         COMMAND ${CMAKE_CURRENT_LIST_DIR}/image.sh ${CMAKE_BINARY_DIR}
         )

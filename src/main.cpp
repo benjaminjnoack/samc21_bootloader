@@ -56,7 +56,7 @@ int main(void)
 	/**
 	 * some basic sanity checks
 	 */
-	if (image_hdr->checksum == IMAGE_CHECKSUM_DEFAULT) {
+	if (image_hdr->checksum == IMAGE_DUMMY_CHECKSUM) {
 		goto forever;
 	}
 
