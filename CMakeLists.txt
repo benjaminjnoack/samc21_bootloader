@@ -31,13 +31,13 @@ add_custom_command(OUTPUT image.c
         COMMAND ${CMAKE_CURRENT_LIST_DIR}/image.sh ${CMAKE_BINARY_DIR}
         )
 
-#add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
-#        COMMENT "output assembly"
-#        COMMAND ${OBJDUMP} -d ${PROJECT_NAME}.elf > ${PROJECT_NAME}.s
-#        COMMAND ${OBJDUMP} -D --dwarf=follow-links ${PROJECT_NAME}.elf > ${PROJECT_NAME}.S
-#        WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
-#        BYPRODUCTS ${PROJECT_NAME}.s ${PROJECT_NAME}.S
-#        )
+add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
+        COMMENT "output assembly"
+        COMMAND ${OBJDUMP} -d ${PROJECT_NAME}.elf > ${PROJECT_NAME}.s
+        COMMAND ${OBJDUMP} -D --dwarf=follow-links ${PROJECT_NAME}.elf > ${PROJECT_NAME}.S
+        WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
+        BYPRODUCTS ${PROJECT_NAME}.s ${PROJECT_NAME}.S
+        )
 
 add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
         COMMENT "output ${PROJECT_NAME} bins"

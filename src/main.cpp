@@ -22,6 +22,7 @@ int main(void)
 
 	uint32_t i;
 	uint32_t sz = __gnu_build_id__.namesz;
+	uint32_t remainder;
 	uint8_t data = 0;
 	uint32_t *app_start;
 	uint32_t sp;
@@ -47,7 +48,14 @@ int main(void)
 		}
 	}
 
-	struct image_hdr *image_hdr = (struct image_hdr *) __app_rom_start__;
+	/**
+	 * The image is stored at the bottom of app rom
+	 */
+	struct image_hdr *image_hdr = (struct image_hdr *) &__app_rom_start__;
+
+	/**
+	 * some basic sanity checks
+	 */
 	if (image_hdr->checksum == IMAGE_CHECKSUM_DEFAULT) {
 		goto forever;
 	}
@@ -56,11 +64,15 @@ int main(void)
 		goto forever;
 	}
 
-	sz = (image_hdr->host_size + 1) + (image_hdr->user_size + 1) + (IMAGE_MAGIC_LENGTH + 1);
 	/**
-	 * another dummy read to step through
-	 * data contains ascii text and null terminators
-	 * so there should never be any 0xFFs in there
+	 * begin iterating through the data array by setting size to the sum,
+	 * including null terminators, of all the data fields
+	 */
+	sz = (image_hdr->host_size + 1) + (image_hdr->user_size + 1) + (IMAGE_MAGIC_LENGTH + 1);
+
+	/**
+	 * iterate through the data
+	 * its all ASCII text so there shouldn't be any 0xFFs
 	 */
 	for (i = 0; i < sz; i++) {
 		data = image_hdr->data[i];
@@ -69,11 +81,28 @@ int main(void)
 		}
 	}
 
-	if (sz % sizeof(uint32_t)) {
-		sz += sizeof(uint32_t) - (sz % sizeof(uint32_t));
+	/**
+	 * add the size of the struct
+	 * the data array is just one byte as calculated by sizeof
+	 */
+	sz += sizeof(struct image_hdr);
+
+	/**
+	 * sz is a number of bytes
+	 * bump it up to the nearest 32 bit boundary
+	 */
+	remainder = sz % sizeof(uint32_t);
+	if (remainder) {
+		sz += remainder;
 	}
 
-	app_start = (uint32_t *) (__app_rom_start__ + (sz / sizeof(uint32_t)));
+	/**
+	 * divide down to the number of uint32
+	 * because C will use pointer arithmetic
+	 */
+	sz /= sizeof(uint32_t);
+
+	app_start = (uint32_t *) &__app_rom_start__ + sz;
 	sp = app_start[0];
 	pc = app_start[1];
 	boot_app(sp, pc);

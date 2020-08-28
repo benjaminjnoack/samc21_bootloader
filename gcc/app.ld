@@ -40,6 +40,12 @@ STACK_SIZE = DEFINED(STACK_SIZE) ? STACK_SIZE : DEFINED(__stack_size__) ? __stac
 /* Section Definitions */
 SECTIONS
 {
+    .image_hdr :
+    {
+        PROVIDE(__image_hdr__ = .);
+        KEEP (*(.image_hdr))
+    } > app_rom
+
     .text :
     {
         . = ALIGN(4);
