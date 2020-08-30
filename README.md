@@ -1,8 +1,8 @@
 # Contents
 
-* `Core` [ARM CMSIS 5.4.0](http://packs.download.atmel.com/)
 * `gcc` linker scripts
 * `samc21` [Atmel SAMC21 CMSIS Pack 1.2.176](http://packs.download.atmel.com/)
+    * `Core` [ARM CMSIS 5.4.0](http://packs.download.atmel.com/)
     * `gcc` [CMSIS Core Device Templates](https://arm-software.github.io/CMSIS_5/Core/html/templates_pg.html)
     * `include` device headers files
 * `src` source code
