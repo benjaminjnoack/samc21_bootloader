@@ -1,3 +1,7 @@
+_NOTE: though this project may be built and used on its own, it is intended to be used with_
+[samc21_blink](https://github.com/benjaminjnoack/samc21_blink)
+_of which it is a subtree._
+
 # Contents
 
 * `gcc` linker scripts
