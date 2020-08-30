@@ -1,8 +1,9 @@
 # Contents
 
 * `Core` [ARM CMSIS 5.4.0](http://packs.download.atmel.com/)
+* `gcc` linker scripts
 * `samc21` [Atmel SAMC21 CMSIS Pack 1.2.176](http://packs.download.atmel.com/)
-    * `gcc` [CMSIS Core Device Templates](https://arm-software.github.io/CMSIS_5/Core/html/templates_pg.html), linker scripts
+    * `gcc` [CMSIS Core Device Templates](https://arm-software.github.io/CMSIS_5/Core/html/templates_pg.html)
     * `include` device headers files
 * `src` source code
     * `crc.*` CRC-32 functions
@@ -15,6 +16,9 @@
 
 **TODO**
 
+* crc
+    * hard coded lookup table
+    * return crc instead of pass pointer
 * "hard" break into boot loader
     * power on while button is pressed
 * detect boot loops
@@ -62,11 +66,6 @@ _NOTE: Ozone is used because the peripheral viewer in CLion appears buggy. Speci
 ## CLion
 
 ### Toolchain
-
-Add a CLion [toolchain](https://www.jetbrains.com/help/clion/toolchains.html).
-Set the **C Compiler**, **C++ Compiler**, and **GDB** from the `bin` dir of the downloaded `arm-gcc` toolchain.
-If the `bin` directory of the `arm-gcc` toolchain is in your `$PATH`, then you can just specify `arm-none-eabi-gcc`, etc...,
-instead of the absolute path.
 
 ### Run/Debug Configuration
 

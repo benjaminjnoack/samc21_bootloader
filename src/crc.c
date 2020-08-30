@@ -2,10 +2,6 @@
 
 /**
  * http://home.thep.lu.se/~bjorn/crc/
- * TODO
- * 	keep the table as a static lookup
- * 	it will never change
- * 	and will significantly increase boot time
  */
 
 static uint32_t table[0x1000];
