@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.16.3)
 include(${CMAKE_CURRENT_LIST_DIR}/samc21/samc21.cmake)
 
 project(samc21_bootloader)
-set(CMAKE_VERBOSE_MAKEFILE true)
+#set(CMAKE_VERBOSE_MAKEFILE true)
 add_executable(${PROJECT_NAME})
 
 add_definitions(-D__SAMC21J18A__)
@@ -37,13 +37,13 @@ add_custom_command(OUTPUT image.c image.h
 		COMMAND ${CMAKE_CURRENT_LIST_DIR}/image.sh ${CMAKE_BINARY_DIR}
 		)
 
-add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
-		COMMENT "output assembly"
-		COMMAND ${OBJDUMP} -d ${PROJECT_NAME}.elf > ${PROJECT_NAME}.s
-		COMMAND ${OBJDUMP} -D --dwarf=follow-links ${PROJECT_NAME}.elf > ${PROJECT_NAME}.S
-		WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
-		BYPRODUCTS ${PROJECT_NAME}.s ${PROJECT_NAME}.S
-		)
+#add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
+#		COMMENT "output assembly"
+#		COMMAND ${OBJDUMP} -d ${PROJECT_NAME}.elf > ${PROJECT_NAME}.s
+#		COMMAND ${OBJDUMP} -D --dwarf=follow-links ${PROJECT_NAME}.elf > ${PROJECT_NAME}.S
+#		WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
+#		BYPRODUCTS ${PROJECT_NAME}.s ${PROJECT_NAME}.S
+#		)
 
 add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
 		COMMENT "output ${PROJECT_NAME} bins"

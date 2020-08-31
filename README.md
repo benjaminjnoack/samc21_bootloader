@@ -29,8 +29,10 @@ _of which it is a subtree._
     * shared memory
     * reset reason register?
 * firmware update
+    * read version of app
     * download over CAN network
     * flash image
+* A/B pattern install
 
 # Hardware
 
