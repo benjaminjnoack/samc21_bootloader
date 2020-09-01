@@ -63,7 +63,7 @@ add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
 		)
 
 add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
-		COMMENT "Build ID"
+		COMMENT "${PROJECT_NAME} build id"
 		DEPENDS ${PROJECT_NAME}.elf
 		COMMAND ${READELF} -n ${PROJECT_NAME}.elf | grep \"Build ID:\" | cut -d \\: -f 2 | sed 's/ //'
 		)
