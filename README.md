@@ -20,14 +20,11 @@ _of which it is a subtree._
 
 **TODO**
 
-* crc
-    * hard coded lookup table
-    * return crc instead of pass pointer
 * "hard" break into boot loader
     * power on while button is pressed
 * detect boot loops
+    * Reset Controller `RCAUSE` register
     * shared memory
-    * reset reason register?
 * firmware update
     * read version of app
     * download over CAN network
