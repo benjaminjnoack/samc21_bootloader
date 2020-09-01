@@ -1,9 +1,9 @@
 cmake_minimum_required(VERSION 3.16.3)
 
 include(${CMAKE_CURRENT_LIST_DIR}/samc21/samc21.cmake)
-
+include(${CMAKE_CURRENT_LIST_DIR}/src/crc/crc_table.cmake)
 project(samc21_bootloader)
-#set(CMAKE_VERBOSE_MAKEFILE true)
+set(CMAKE_VERBOSE_MAKEFILE true)
 add_executable(${PROJECT_NAME})
 
 add_definitions(-D__SAMC21J18A__)
@@ -16,8 +16,9 @@ include_directories(
 target_sources(${PROJECT_NAME} PUBLIC
 		image.c
 		image.h
-		${CMAKE_CURRENT_LIST_DIR}/src/crc.c
-		${CMAKE_CURRENT_LIST_DIR}/src/crc.h
+		crc_table.h
+		src/crc/crc.c
+		src/crc/crc.h
 		${CMAKE_CURRENT_LIST_DIR}/src/gnu_build_id.h
 		${CMAKE_CURRENT_LIST_DIR}/src/main.cpp
 		${CMAKE_CURRENT_LIST_DIR}/src/memory_map.h

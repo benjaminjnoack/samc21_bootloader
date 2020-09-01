@@ -6,10 +6,9 @@ extern "C"
 {
 #endif
 
-#include "stdint.h"
+#include <stdint.h>
 
 void crc32(const void *data, uint32_t n_bytes, uint32_t* crc);
-void crc_table_init();
 
 #ifdef __cplusplus
 }

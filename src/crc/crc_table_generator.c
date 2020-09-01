@@ -8,14 +8,17 @@ uint32_t crc32_for_byte(uint32_t r);
 int main()
 {
 	printf("#include <stdint.h>\n\n");
+
 	printf("#define CRC_TABLE_SIZE 0x%X\n\n", CRC_TABLE_SIZE);
-	printf("static uint32_t crc_table[%d] = {", CRC_TABLE_SIZE);
+	printf("static uint32_t crc_table[%d] = {\n", CRC_TABLE_SIZE);
 
 	for (uint32_t i = 0; i < CRC_TABLE_SIZE - 1; i++) {
-		printf("0x%lX,", crc32_for_byte(i));
+		printf("0x%X,\t//0x%02X\n", crc32_for_byte(i), i);
 	}
 
-	printf("0x%lX};\n", crc32_for_byte(CRC_TABLE_SIZE - 1));
+	printf("0x%X\t//0x%02X\n", crc32_for_byte(CRC_TABLE_SIZE - 1), CRC_TABLE_SIZE - 1);
+	printf("};");
+
 	return 0;
 }
 

@@ -2,7 +2,7 @@
 #include "sam.h"
 #include "memory_map.h"
 #include "gnu_build_id.h"
-#include "crc.h"
+#include "crc/crc.h"
 #include "image.h"
 
 #define LED_PIN PORT_PA14
@@ -61,8 +61,6 @@ int main(void)
 	if (image_hdr->checksum == IMAGE_DUMMY_CHECKSUM) {
 		goto forever;
 	}
-
-	crc_table_init();
 
 	/**
 	 * image_size is the next word after the checksum
