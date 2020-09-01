@@ -17,8 +17,8 @@ target_sources(${PROJECT_NAME} PUBLIC
 		image.c
 		image.h
 		crc_table.h
-		src/crc/crc.c
-		src/crc/crc.h
+		${CMAKE_CURRENT_LIST_DIR}/src/crc/crc.c
+		${CMAKE_CURRENT_LIST_DIR}/src/crc/crc.h
 		${CMAKE_CURRENT_LIST_DIR}/src/gnu_build_id.h
 		${CMAKE_CURRENT_LIST_DIR}/src/main.cpp
 		${CMAKE_CURRENT_LIST_DIR}/src/memory_map.h
