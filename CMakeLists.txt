@@ -23,7 +23,7 @@ target_sources(${PROJECT_NAME} PUBLIC
 		${CMAKE_CURRENT_LIST_DIR}/src/main.cpp
 		${CMAKE_CURRENT_LIST_DIR}/src/memory_map.h
 		$<TARGET_OBJECTS:samc21_cmsis>
-		)
+)
 
 # setting CMAKE_EXE_LINKER_FLAGS will be combined with blink's linker options (conflicting linker scripts)
 target_link_options(${PROJECT_NAME} PRIVATE LINKER:-lm,-gc-sections,--print-memory-usage,--build-id=md5)
@@ -38,13 +38,12 @@ add_custom_command(OUTPUT image.c image.h
 		COMMAND ${CMAKE_CURRENT_LIST_DIR}/image.sh ${CMAKE_BINARY_DIR}
 		)
 
-#add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
-#		COMMENT "output assembly"
-#		COMMAND ${OBJDUMP} -d ${PROJECT_NAME}.elf > ${PROJECT_NAME}.s
-#		COMMAND ${OBJDUMP} -D --dwarf=follow-links ${PROJECT_NAME}.elf > ${PROJECT_NAME}.S
-#		WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
-#		BYPRODUCTS ${PROJECT_NAME}.s ${PROJECT_NAME}.S
-#		)
+add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
+		COMMENT "output assembly"
+		COMMAND ${OBJDUMP} -D --dwarf=follow-links ${PROJECT_NAME}.elf > ${PROJECT_NAME}.S
+		WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
+		BYPRODUCTS ${PROJECT_NAME}.s ${PROJECT_NAME}.S
+		)
 
 add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
 		COMMENT "output ${PROJECT_NAME} bins"
@@ -72,7 +71,7 @@ add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
 # TODO for reference
 #add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
 #        COMMENT "output ${PROJECT_NAME} hex"
-#        COMMAND ${OBJCOPY} -O ihex -R .eeprom -R .fuse -R .lock -R .signature ${PROJECT_NAME}.elf ${PROJECT_NAME}.hex
+#        COMMAND ${OBJCOPY} -O ihex ${PROJECT_NAME}.elf ${PROJECT_NAME}.hex
 #        WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
 #        BYPRODUCTS "${PROJECT_NAME}.hex"
 #        )
