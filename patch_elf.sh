@@ -7,9 +7,8 @@ set -u
 ELF=$1
 BIN=$2
 
-SP=$(xxd -c 4 -l 4 -s 0x00000004 -e $BIN | cut -d ' ' -f 2)
-echo "SP: $SP"
+SP=$(xxd -c 4 -l 4 -s 0x00000004 $BIN | cut -d ' ' -f 2)
 # address calculated from ELF header spec
-echo "00000018: $(echo -n $SP | tac -rs ..)" | xxd -r - $ELF
+echo "00000018: $(echo -n $SP)" | xxd -r - $ELF
 arm-none-eabi-readelf -h $ELF | grep "Entry point address"
 exit 0
