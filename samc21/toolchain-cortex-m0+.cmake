@@ -17,8 +17,8 @@ set(COMMON_FLAGS "${COMPILER_WARNINGS} -mcpu=cortex-m0plus -mthumb -mthumb-inter
 
 set(CMAKE_C_FLAGS_INIT ${COMMON_FLAGS})
 set(CMAKE_C_FLAGS_RELEASE "-Os")
-set(CMAKE_C_FLAGS_DEBUG "-Og -g3 -gdwarf-3 -gstrict-dwarf")
+set(CMAKE_C_FLAGS_DEBUG "-Og -g3 -gdwarf")
 
 set(CMAKE_CXX_FLAGS_INIT ${COMMON_FLAGS})
 set(CMAKE_CXX_FLAGS_RELEASE "-Os")
-set(CMAKE_CXX_FLAGS_DEBUG "-Og -g -gdwarf-3 -gstrict-dwarf")
+set(CMAKE_CXX_FLAGS_DEBUG "-Og -g3 -gdwarf")

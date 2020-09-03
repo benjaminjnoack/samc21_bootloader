@@ -67,6 +67,12 @@ add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
 		COMMAND ${READELF} -n ${PROJECT_NAME}.elf | grep \"Build ID:\" | cut -d \\: -f 2 | sed 's/ //'
 		)
 
+add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
+		COMMENT "patching ELF entry point"
+		DEPENDS ${PROJECT_NAME}.elf ${PROJECT_NAME}.bin
+		COMMAND ${CMAKE_CURRENT_LIST_DIR}/patch_elf.sh ${CMAKE_BINARY_DIR}/${PROJECT_NAME}.elf ${CMAKE_BINARY_DIR}/${PROJECT_NAME}.bin
+		)
+
 
 # TODO for reference
 #add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
