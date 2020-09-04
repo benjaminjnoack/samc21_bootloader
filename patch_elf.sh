@@ -2,7 +2,8 @@
 set -e
 set -u
 # this script patches the Entry point address in the ELF header to the correct stack pointer address.
-# for some reason, the current GCC comes up with 0x00 as the SP!
+# For some reason, the current GCC stores 0x00 in the ELF header Entry point address!
+# This causes debuggers like Ozone to set the PC to 0x00; consequently, the processor starts executing garbage.
 # So take the correct SP from the binary and patch it into the ELF...
 ELF=$1
 BIN=$2
